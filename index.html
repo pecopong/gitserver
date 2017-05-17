@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+		</script>
+	</head>
+	<body>
+		<input id="m" autocomplete="off" />
+		<div id="r"></div>
+	</body>
+	<script>
+		var socket = io();
+		document.querySelector('#m').onkeydown = function(e){
+			socket.emit('client message', e.key);
+			return false;
+		}
+
+		socket.on('server message', function(msg){
+			document.querySelector('#r').innerHTML = msg;
+		})
+	</script>
+</html>
